@@ -51,7 +51,7 @@ public class JobData {
     public static ArrayList<HashMap<String, String>> findAll() {
 
         // load data, if not already loaded
-        loadData();
+         loadData();
 
         // Bonus mission; normal version returns allJobs
         return new ArrayList<>(allJobs);
@@ -98,9 +98,19 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
-        // TODO - implement this method
-        return null;
+        ArrayList<HashMap<String, String>> jobsByValue = new ArrayList<>();
+
+        for (HashMap<String, String> jobContainsValue : allJobs) {
+            for (String searchTerm: jobContainsValue.values()) {
+
+                if (searchTerm.toLowerCase().contains(value.toLowerCase())) {
+                    jobsByValue.add(jobContainsValue);
+                }
+            }
+        }
+           return jobsByValue;
     }
+
 
     /**
      * Read in data from a CSV file and store it in a list
